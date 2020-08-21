@@ -1,0 +1,130 @@
+droid.png
+animations: 9
+attack
+frames:2
+frame
+clip: 1 1 32 32
+offset: 0 0
+duration: 0.2
+index: 0
+collisionBox: 0 0 0 0
+frame
+clip: 34 1 32 32
+offset: 0 0
+duration: 0.2
+index: 1
+collisionBox: 0 0 0 0
+east
+frames:2
+frame
+clip: 67 1 32 32
+offset: 0 0
+duration: 0.2
+index: 0
+collisionBox: 0 0 0 0
+frame
+clip: 1 34 32 32
+offset: 0 0
+duration: 0.2
+index: 2
+collisionBox: 0 0 0 0
+north
+frames: 2
+frame
+clip: 34 34 32 32
+offset: 0 0
+duration: 0.2
+index: 0
+collisionBox: 0 0 0 0
+frame
+clip: 67 34 32 32
+offset: 0 0
+duration: 0.2
+index: 1
+collisionBox: 0 0 0 0
+north-east
+frames: 2
+frame
+clip: 1 67 32 32
+offset: 0 0
+duration: 0.2
+index: 0
+collisionBox: 0 0 0 0
+frame
+clip: 34 67 32 32
+offset: 0 0
+duration: 0.2
+index: 1
+collisionBox: 0 0 0 0
+north-west
+frames: 2
+frame
+clip: 67 67 32 32
+offset: 0 0
+duration: 0.2
+index: 0
+collisionBox: 0 0 0 0
+frame
+clip: 1 100 32 32
+offset: 0 0
+duration: 0.2
+index: 1
+collisionBox: 0 0 0 0
+south
+frames: 2
+frame
+clip: 34 100 32 32
+offset: 0 0
+duration: 0.2
+index: 0
+collisionBox: 0 0 0 0
+frame
+clip: 67 100 32 32
+offset: 0 0
+duration: 0.2
+index: 1
+collisionBox: 0 0 0 0
+south-east
+frames: 2
+frame
+clip: 1 133 32 32
+offset: 0 0
+duration: 0.2
+index: 0
+collisionBox: 0 0 0 0
+frame
+clip: 34 133 32 32
+offset: 0 0
+duration: 0.1
+index: 1
+collisionBox: 0 0 0 0
+south-west
+frames: 2
+frame
+clip: 67 133 32 32
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 0 0 0 0
+frame
+clip: 1 166 32 32
+offset: 0 0
+duration: 0.1
+index: 1
+collisionBox: 0 0 0 0
+west
+frames: 2
+frame
+clip: 34 166 32 32
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 0 0 0 0
+frame
+clip: 67 166 32 32
+offset: 0 0
+duration: 0.1
+index: 1
+collisionBox: 0 0 0 0
+
+

@@ -1,0 +1,568 @@
+stranded.png
+animations: 17
+slashRight
+frames: 4
+frame
+clip: 0 0 42 39
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 6 21 17 15
+frame
+clip: 42 0 42 39
+offset: 0 0
+duration: 0.1
+index: 1
+collisionBox: 6 25 18 11
+hitBox: 25 15 13 9 
+damage: 10
+frame
+clip: 84 0 42 39
+offset: 0 0
+duration: 0.1
+index: 2
+collisionBox: 6 25 18 11
+frame
+clip: 126 0 42 39
+offset: 0 0
+duration: 0.1
+index: 3
+collisionBox: 6 25 18 11
+slashUp
+frames: 4
+frame
+clip: 168 0 52 49
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 0 0 0 0
+frame
+clip: 220 0 52 49
+offset: 0 0
+duration: 0.1
+index: 1
+collisionBox: 22 26 11 18
+hitBox: 18 8 15 16
+damage: 10
+frame
+clip: 272 0 52 49
+offset: 0 0
+duration: 0.1
+index: 2
+collisionBox: 22 26 11 18
+frame
+clip: 0 49 52 49
+offset: 0 0
+duration: 0.1
+index: 3
+collisionBox: 22 26 11 18
+slashDown
+frames:5
+frame
+clip: 52 49 25 36
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 5 18 13 14
+frame
+clip: 77 49 25 36
+offset: 0 0
+duration: 0.1
+index: 1
+collisionBox: 5 18 13 14
+hitBox: 2 20 22 15
+damage: 10
+frame
+clip: 102 49 25 36
+offset: 0 0
+duration: 0.1
+index: 2
+collisionBox: 5 18 13 14
+frame
+clip: 127 49 25 36
+offset: 0 0
+duration: 0.1
+index: 3
+collisionBox: 5 18 13 14
+frame
+clip: 152 49 25 36
+offset: 0 0
+duration: 0.1
+index: 4
+collisionBox: 5 18 13 14
+slashLeft
+frames: 4
+frame
+clip: 177 49 42 39
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 18 18 22 18
+frame
+clip: 219 49 42 39
+offset: 0 0
+duration: 0.1
+index: 1
+collisionBox: 16 23 20 13
+hitBox: 3 14 19 13
+damage: 10
+frame
+clip: 261 49 42 39
+offset: 0 0
+duration: 0.1
+index: 2
+collisionBox: 16 23 20 13
+frame
+clip: 303 49 42 39
+offset: 0 0
+duration: 0.1
+index: 3
+collisionBox: 16 23 20 13
+dashRight
+frames: 3
+frame
+clip: 0 98 43 32
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 4 11 39 31
+frame
+clip: 43 98 43 32
+offset: 0 0
+duration: 0.1
+index: 1
+collisionBox: 9 18 12 12
+frame
+clip: 86 98 43 32
+offset: 0 0
+duration: 0.1
+index: 2
+collisionBox: 9 16 21 14
+dashUp
+frames: 4
+frame
+clip: 129 98 23 47
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 4 8 16 39
+frame
+clip: 152 98 23 47
+offset: 0 0
+duration: 0.1
+index: 1
+collisionBox: 4 8 16 39
+frame
+clip: 175 98 23 47
+offset: 0 0
+duration: 0.1
+index: 2
+collisionBox: 4 6 14 33
+frame
+clip: 198 98 23 47
+offset: 0 0
+duration: 0.1
+index: 3
+collisionBox: 6 19 13 14
+dashDown
+frames: 5
+frame
+clip: 221 98 20 41
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 0 13 18 26
+frame
+clip: 241 98 20 41
+offset: 0 0
+duration: 0.15
+index: 1
+collisionBox: 2 5 16 35
+frame
+clip: 261 98 20 41
+offset: 0 0
+duration: 0.05
+index: 2
+collisionBox: 3 23 13 18
+frame
+clip: 281 98 20 41
+offset: 0 0
+duration: 0.05
+index: 3
+collisionBox: 4 20 13 13
+frame
+clip: 301 98 20 41
+offset: 0 0
+duration: 0.05
+index: 4
+collisionBox: 3 20 14 13
+dashLeft
+frames: 3
+frame
+clip: 0 145 43 32
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 0 13 39 19
+frame
+clip: 43 145 43 32
+offset: 0 0
+duration: 0.1
+index: 1
+collisionBox: 12 16 21 15
+frame
+clip: 86 145 43 32
+offset: 0 0
+duration: 0.1
+index: 2
+collisionBox: 12 16 21 15
+die
+frames: 3
+frame
+clip: 129 145 38 40
+offset: 0 0
+duration: 0.5
+index: 0
+collisionBox: 5 18 15 12
+frame
+clip: 167 145 38 40
+offset: 0 0
+duration: 10
+index: 0
+collisionBox: 8 24 23 6
+frame
+clip: 205 145 38 40
+offset: 0 0
+duration: 0.5
+index: 0
+collisionBox: 8 25 24 13
+idleUp
+frames: 1
+frame
+clip: 243 145 12 30
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 0 18 12 14
+idleRight
+frames: 1
+frame
+clip: 255 145 12 31
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 0 18 11 13
+idleDown
+frames: 1
+frame
+clip: 267 145 12 33
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 0 18 12 14
+idleLeft
+frames: 1
+frame
+clip: 279 145 12 31
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 0 18 11 13
+right
+frames: 12
+frame
+clip: 291 145 32 32
+offset: 0 0
+duration: 0.05
+index: 0
+collisionBox: 6 16 20 14
+frame
+clip: 0 185 32 32
+offset: 0 0
+duration: 0.05
+index: 1
+collisionBox: 6 16 20 14
+frame
+clip: 32 185 32 32
+offset: 0 0
+duration: 0.05
+index: 2
+collisionBox: 6 16 20 14
+frame
+clip: 64 185 32 32
+offset: 0 0
+duration: 0.05
+index: 3
+collisionBox: 6 16 20 14
+frame
+clip: 96 185 32 32
+offset: 0 0
+duration: 0.05
+index: 4
+collisionBox: 6 16 20 14
+frame
+clip: 128 185 32 32
+offset: 0 0
+duration: 0.05
+index: 5
+collisionBox: 6 16 20 14
+frame
+clip: 160 185 32 32
+offset: 0 0
+duration: 0.05
+index: 6
+collisionBox: 6 16 20 14
+frame
+clip: 192 185 32 32
+offset: 0 0
+duration: 0.05
+index: 7
+collisionBox: 6 16 20 14
+frame
+clip: 224 185 32 32
+offset: 0 0
+duration: 0.05
+index: 8
+collisionBox: 6 16 20 14
+frame
+clip: 256 185 32 32
+offset: 0 0
+duration: 0.05
+index: 9
+collisionBox: 6 16 20 14
+frame
+clip: 288 185 32 32
+offset: 0 0
+duration: 0.05
+index: 10
+collisionBox: 6 16 20 14
+frame
+clip: 320 185 32 32
+offset: 0 0
+duration: 0.05
+index: 11
+collisionBox: 6 16 20 14
+up
+frames: 12
+frame
+clip: 0 217 26 36
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 5 19 15 12
+frame
+clip: 26 217 26 36
+offset: 0 0
+duration: 0.1
+index: 1
+collisionBox: 5 19 15 12
+frame
+clip: 52 217 26 36
+offset: 0 0
+duration: 0.1
+index: 2
+collisionBox: 5 19 15 12
+frame
+clip: 78 217 26 36
+offset: 0 0
+duration: 0.1
+index: 3
+collisionBox: 5 19 15 12
+frame
+clip: 104 217 26 36
+offset: 0 0
+duration: 0.1
+index: 4
+collisionBox: 5 19 15 12
+frame
+clip: 130 217 26 36
+offset: 0 0
+duration: 0.1
+index: 5
+collisionBox: 5 19 15 12
+frame
+clip: 156 217 26 36
+offset: 0 0
+duration: 0.1
+index: 6
+collisionBox: 5 19 15 12
+frame
+clip: 182 217 26 36
+offset: 0 0
+duration: 0.1
+index: 7
+collisionBox: 5 19 15 12
+frame
+clip: 208 217 26 36
+offset: 0 0
+duration: 0.1
+index: 8
+collisionBox: 5 19 15 12
+frame
+clip: 234 217 26 36
+offset: 0 0
+duration: 0.1
+index: 9
+collisionBox: 5 19 15 12
+frame
+clip: 260 217 26 36
+offset: 0 0
+duration: 0.1
+index: 10
+collisionBox: 5 19 15 12
+frame
+clip: 286 217 26 36
+offset: 0 0
+duration: 0.1
+index: 11
+collisionBox: 5 19 15 12
+down
+frames: 12
+frame
+clip: 312 217 24 35
+offset: 0 0
+duration: 0.1
+index: 0
+collisionBox: 3 20 16 14
+frame
+clip: 0 253 24 35
+offset: 0 0
+duration: 0.1
+index: 1
+collisionBox: 3 20 16 14
+frame
+clip: 24 253 24 35
+offset: 0 0
+duration: 0.1
+index: 2
+collisionBox: 3 20 16 14
+frame
+clip: 48 253 24 35
+offset: 0 0
+duration: 0.1
+index: 3
+collisionBox: 3 20 16 14
+frame
+clip: 72 253 24 35
+offset: 0 0
+duration: 0.1
+index: 4
+collisionBox: 3 20 16 14
+frame
+clip: 96 253 24 35
+offset: 0 0
+duration: 0.1
+index: 5
+collisionBox: 3 20 16 14
+frame
+clip: 120 253 24 35
+offset: 0 0
+duration: 0.1
+index: 6
+collisionBox: 3 20 16 14
+frame
+clip: 144 253 24 35
+offset: 0 0
+duration: 0.1
+index: 7
+collisionBox: 3 20 16 14
+frame
+clip: 168 253 24 35
+offset: 0 0
+duration: 0.1
+index: 8
+collisionBox: 3 20 16 14
+frame
+clip: 192 253 24 35
+offset: 0 0
+duration: 0.1
+index: 9
+collisionBox: 3 20 16 14
+frame
+clip: 216 253 24 35
+offset: 0 0
+duration: 0.1
+index: 10
+collisionBox: 3 20 16 14
+frame
+clip: 240 253 24 35
+offset: 0 0
+duration: 0.1
+index: 11
+collisionBox: 3 20 16 14
+left
+frames: 12
+frame
+clip: 264 253 32 32
+offset: 0 0
+duration: 0.05
+index: 0
+collisionBox: 4 18 23 12
+frame
+clip: 296 253 32 32
+offset: 0 0
+duration: 0.05
+index: 1
+collisionBox: 4 18 23 12
+frame
+clip: 0 288 32 32
+offset: 0 0
+duration: 0.05
+index: 2
+collisionBox: 4 18 23 12
+frame
+clip: 32 288 32 32
+offset: 0 0
+duration: 0.05
+index: 3
+collisionBox: 4 18 23 12
+frame
+clip: 64 288 32 32
+offset: 0 0
+duration: 0.05
+index: 4
+collisionBox: 4 18 23 12
+frame
+clip: 96 288 32 32
+offset: 0 0
+duration: 0.05
+index: 5
+collisionBox: 4 18 23 12
+frame
+clip: 128 288 32 32
+offset: 0 0
+duration: 0.05
+index: 6
+collisionBox: 4 18 23 12
+frame
+clip: 160 288 32 32
+offset: 0 0
+duration: 0.05
+index: 7
+collisionBox: 4 18 23 12
+frame
+clip: 192 288 32 32
+offset: 0 0
+duration: 0.05
+index: 8
+collisionBox: 4 18 23 12
+frame
+clip: 224 288 32 32
+offset: 0 0
+duration: 0.05
+index: 9
+collisionBox: 4 18 23 12
+frame
+clip: 256 288 32 32
+offset: 0 0
+duration: 0.05
+index: 10
+collisionBox: 4 18 23 12
+frame
+clip: 288 288 32 32
+offset: 0 0
+duration: 0.05
+index: 11
+collisionBox: 4 18 23 12
+
+
