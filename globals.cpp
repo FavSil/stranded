@@ -1,6 +1,8 @@
 #include "globals.h"
 
 const float Globals::PI = 3.14159;
+const int Globals::tileHeight = 32;
+const int Globals::tileWidth = 32;
 
 //useful for me as a dev
 bool Globals::debugging = false;

@@ -19,21 +19,28 @@ const int Droid::DROID_AI_CHASE = 1;
 
 float moveSpeedMax;
 LivingEntity *target = NULL;
+
 Droid::Droid(AnimationSet *animSet){
+
     this->animSet = animSet;
     type = "enemy";
 
     x = Globals::ScreenWidth / 2;
 	y = Globals::ScreenHeight / 2;
-
-    moveSpeedMax = 10;
-    moveSpeed = 0;
+	moveSpeed = 0;
+	moveSpeedMax = 50;
     hp = 1;
+    // velocity[0] = 0;
+    velocity.push_back(0);
+    velocity.push_back(0);
+    rotation = 0;
 
     collisionBoxW = 0;
 	collisionBoxH = 0;
     collisionBox.w = collisionBoxW;
 	collisionBox.h = collisionBoxH;
+
+    direction = DIR_DOWN;
 
     collisionBoxYOffset = 0;
     changeAnimation(DROID_STATE_IDLE, true);
@@ -46,25 +53,23 @@ void Droid::changeAnimation(int newState, bool resetFrameToBeginning){
 
     if (state == DROID_STATE_MOVE)
     {
-        switch(direction)
-        {
-        case (DIR_SOUTH):
+        if (direction == DIR_DOWN)
             currentAnim = animSet->getAnimation(DROID_ANIM_SOUTH);
-        case (DIR_SOUTH_EAST):
+        if (direction == DIR_DOWN_RIGHT)
             currentAnim = animSet->getAnimation(DROID_ANIM_SOUTH_EAST);
-        case (DIR_EAST):
+        if (direction == DIR_RIGHT)
             currentAnim = animSet->getAnimation(DROID_ANIM_EAST);
-        case (DIR_NORTH_EAST):
+        if (direction == DIR_UP_RIGHT)
             currentAnim = animSet->getAnimation(DROID_ANIM_NORTH_EAST);
-        case (DIR_NORTH):
+        if (direction == DIR_UP)
             currentAnim = animSet->getAnimation(DROID_ANIM_NORTH);
-        case (DIR_NORTH_WEST):
+        if (direction == DIR_UP_LEFT)
             currentAnim = animSet->getAnimation(DROID_ANIM_NORTH_WEST);
-        case (DIR_WEST):
+        if (direction == DIR_LEFT)
             currentAnim = animSet->getAnimation(DROID_ANIM_WEST);
-        case (DIR_SOUTH_WEST):
+        if (direction == DIR_DOWN_LEFT)
             currentAnim = animSet->getAnimation(DROID_ANIM_SOUTH_WEST);
-        }
+        
     }
     else if (state == DROID_STATE_IDLE)
     {
@@ -82,42 +87,22 @@ void Droid::changeAnimation(int newState, bool resetFrameToBeginning){
 }
 void Droid::update(){
 
-	if (hp < 1 && state != DROID_STATE_DEAD){
+	if (hp < 1 && state != DROID_STATE_DEAD)
+    {
 		// changeAnimation(DROID_STATE_DEAD, true);
 		moving = false;
 		die();
 	}
+
     updateAi();
     updateCollisionBox();
 	updateCollisions();
+    //CHANGE MADE
+    updateAnimation();
+
 }
-void Droid::updateMovement(SteeringOutput steering){
-    updateCollisionBox();
-    x += velocity[0] * TimeController::timeController.dT;
-    y += velocity[1] * TimeController::timeController.dT;
-    orientation += rotation * TimeController::timeController.dT;
-
-    velocity[0] += steering.x * TimeController::timeController.dT;
-    velocity[1] += steering.y * TimeController::timeController.dT;
-
-    rotation += steering.angular * TimeController::timeController.dT;
-
-    float magnitude = sqrt(pow(velocity[0], 2) + pow(velocity[1], 2));
-    //check for speeding and clip
-    if(magnitude > moveSpeedMax){
-        if (magnitude > 0)
-        {
-            //stops dividing by zero
-            for (auto &v : velocity)
-            {
-                v /= magnitude; //normalize
-                v *= moveSpeedMax;  //vector coordinate * max
-            }
-        }
-    }
-    updateCollisionBox();
-}
-void Droid::updateAi(){
+void Droid::updateAi()
+{
    target = NULL;
     for (auto entity = Entity::entities.begin(); entity != Entity::entities.end(); entity++){
 		if ((*entity)->type == "hero" && (*entity)->active){
@@ -156,9 +141,45 @@ void Droid::updateAi(){
         //no targets, go idle
         moving = false;
         aiState = DROID_AI_NORMAL;
-        // changeAnimation(GLOB_STATE_IDLE, true);
     }
 
+    if ( aiState == DROID_AI_CHASE && hp > 0 && target != NULL){
+
+        Arrive  steerRequest(this, target);
+        SteeringOutput steering = steerRequest.getSteering();
+        move();
+        updateMovement(steering);
+    }
+
+}
+void Droid::updateMovement(SteeringOutput steering){ 
+    updateCollisionBox();
+    x += velocity_x * TimeController::timeController.dT;
+    y += velocity_y * TimeController::timeController.dT;
+    orientation += rotation * TimeController::timeController.dT;
+
+    velocity_x += steering.x * TimeController::timeController.dT;
+    velocity_y += steering.y * TimeController::timeController.dT;
+
+    rotation += steering.angular * TimeController::timeController.dT;
+    // std::cout<< steering.x << ' ' << steering.y;
+    float magnitude = sqrt(pow(velocity[0], 2) + pow(velocity[1], 2));
+    //check for speeding and clip
+    if(magnitude > moveSpeedMax)
+    {
+        if (magnitude > 0)
+        {
+            //stops dividing by zero
+            for (auto &v : velocity)
+            {
+                v /= magnitude; //normalize
+                v *= moveSpeedMax;  //vector coordinate * max
+            }
+        }
+    }
+    if (!moving)
+		moveSpeed -= moveSpeed;
+    updateCollisionBox();
 }
 void Droid::move(){
 	moving = true;

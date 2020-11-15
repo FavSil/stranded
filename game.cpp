@@ -5,7 +5,7 @@ Game::Game(){
 	backgroundImage = loadTexture(resPath + "map.png", Globals::renderer);
 	splashImage = loadTexture(resPath + "cyborgtitle.png", Globals::renderer);
 	overlayImage = loadTexture(resPath + "overlay.png", Globals::renderer);
-
+	
 	splashShowing = false;
 	overlayTimer = 2;
 
@@ -21,13 +21,13 @@ Game::Game(){
 	SoundManager::soundManager.loadSound("hit", resPath + "hit.wav");
 	SoundManager::soundManager.loadSound("enemyHit", resPath + "Hit_Hurt9.wav");
 	SoundManager::soundManager.loadSound("swing", resPath + "hit.wav");
-	SoundManager::soundManager.loadSound("dash", resPath + "dash_chrome.wav");
+	SoundManager::soundManager.loadSound("dash", resPath + "dash.wav");
 	SoundManager::soundManager.loadSound("growl", resPath + "Randomize34.wav");
 	SoundManager::soundManager.loadSound("enemyDie", resPath + "Randomize41.wav");
 
 	song = Mix_LoadMUS(string(resPath + "strandedTheme.wav").c_str());//Song by Ryan Beveridge https://soundcloud.com/ryan-beveridge
-	if (song != NULL)
-		Mix_PlayMusic(song, -1);
+	// if (song != NULL)
+	// 	Mix_PlayMusic(song, -1);
 
 	//holds a list of group types. this list describes the types of groups of data our frames can have!
 	list<DataGroupType> dataGroupTypes;
@@ -58,11 +58,12 @@ Game::Game(){
 
 	globAnimSet = new AnimationSet();
 	globAnimSet->loadAnimationSet("glob.fdset", dataGroupTypes, false, 0, true);
-
 	
 	batAnimSet = new AnimationSet();
 	batAnimSet->loadAnimationSet("bat.fdset", dataGroupTypes, false, 0, true);
 
+	droidAnimSet = new AnimationSet();
+	droidAnimSet->loadAnimationSet("droid.fdset", dataGroupTypes, false, 0, true);
 
 	grobAnimSet = new AnimationSet();
 	grobAnimSet->loadAnimationSet("grob.fdset", dataGroupTypes, true, 0, true);
@@ -84,41 +85,50 @@ Game::Game(){
 	//Get camera to follow hero
 	camController.target = hero;
 
+    spriteSheet = loadTexture(resPath + "maptest.png", Globals::renderer);
 
-	int tileSize = 32;
-	//build all the walls for this game
-	//first. build walls on top and bottom of screen
-	for (int i = 0; i < (Globals::ScreenWidth*2) / tileSize; i++){
-		//fills in top row
-		Wall* newWall = new Wall(wallAnimSet);
-		newWall->x = i * tileSize + tileSize/2;
-		newWall->y = tileSize / 2;
-		walls.push_back(newWall);
-		Entity::entities.push_back(newWall);
 
-		//re-using pointer to create bottom row
-		newWall = new Wall(wallAnimSet);
-		newWall->x = i * tileSize + tileSize / 2;
-		newWall->y = (Globals::ScreenHeight *2) - tileSize / 2;
-		walls.push_back(newWall);
-		Entity::entities.push_back(newWall);
-	}
-	//now the sides
-	for (int i = 1; i < (Globals::ScreenHeight*2) / tileSize - 1; i++){
-		//fills in left column
-		Wall* newWall = new Wall(wallAnimSet);
-		newWall->x = tileSize / 2;
-		newWall->y = i*tileSize + tileSize / 2;
-		walls.push_back(newWall);
-		Entity::entities.push_back(newWall);
+    loader = new TMXLoader();
+    loader->loadMap("testmap", "res/S2.tmx");
+    loader->printMapData("testmap");
+    
 
-		//re-using pointer to create right column
-		newWall = new Wall(wallAnimSet);
-		newWall->x = (Globals::ScreenWidth * 2) - tileSize / 2;
-		newWall->y = i*tileSize + tileSize / 2;
-		walls.push_back(newWall);
-		Entity::entities.push_back(newWall);
-	}
+
+
+	// int tileSize = 32;
+	// //build all the walls for this game
+	// //first. build walls on top and bottom of screen
+	// for (int i = 0; i < (Globals::ScreenWidth*2) / tileSize; i++){
+	// 	//fills in top row
+	// 	Wall* newWall = new Wall(wallAnimSet);
+	// 	newWall->x = i * tileSize + tileSize/2;
+	// 	newWall->y = tileSize / 2;
+	// 	walls.push_back(newWall);
+	// 	Entity::entities.push_back(newWall);
+
+	// 	//re-using pointer to create bottom row
+	// 	newWall = new Wall(wallAnimSet);
+	// 	newWall->x = i * tileSize + tileSize / 2;
+	// 	newWall->y = (Globals::ScreenHeight *2) - tileSize / 2;
+	// 	walls.push_back(newWall);
+	// 	Entity::entities.push_back(newWall);
+	// }
+	// //now the sides
+	// for (int i = 1; i < (Globals::ScreenHeight*2) / tileSize - 1; i++){
+	// 	//fills in left column
+	// 	Wall* newWall = new Wall(wallAnimSet);
+	// 	newWall->x = tileSize / 2;
+	// 	newWall->y = i*tileSize + tileSize / 2;
+	// 	walls.push_back(newWall);
+	// 	Entity::entities.push_back(newWall);
+
+	// 	//re-using pointer to create right column
+	// 	newWall = new Wall(wallAnimSet);
+	// 	newWall->x = (Globals::ScreenWidth * 2) - tileSize / 2;
+	// 	newWall->y = i*tileSize + tileSize / 2;
+	// 	walls.push_back(newWall);
+	// 	Entity::entities.push_back(newWall);
+	// }
 
 }
 
@@ -140,6 +150,7 @@ Game::~Game(){
 	delete grobAnimSet;
 	delete wallAnimSet;
 	delete batAnimSet;
+	delete droidAnimSet;
 
 	delete hero;
 
@@ -217,7 +228,6 @@ void Game::update(){
 
 		//update all entities
 		for (list<Entity*>::iterator entity = Entity::entities.begin(); entity != Entity::entities.end(); entity++){
-			//remember how awesome polymorphism is?
 			//update all entities in game world at once
 			(*entity)->update();
 		}
@@ -231,7 +241,7 @@ void Game::update(){
 			}
 			enemyBuildTimer -= TimeController::timeController.dT;
 			if (enemyBuildTimer <= 0 && enemiesBuilt < enemiesToBuild && enemies.size() < 1){
-				Bat *enemy = new Bat(batAnimSet);
+				Droid *enemy = new Droid(droidAnimSet);
 				//set enemies position to somewhere random within the arena's open space
 				enemy->x = getRandomNumber(Globals::ScreenWidth - (2 * 32) - 32) + 32 + 16;
 				enemy->y = getRandomNumber(Globals::ScreenHeight - (2 * 32) - 32) + 32 + 16;
@@ -241,27 +251,61 @@ void Game::update(){
 				Entity::entities.push_back(enemy);
 
 			}
+			// if (enemyBuildTimer <= 0 && enemiesBuilt < enemiesToBuild && enemies.size() < 2){
+			// 	Bat *enemy = new Bat(batAnimSet);
+			// 	//set enemies position to somewhere random within the arena's open space
+			// 	enemy->x = getRandomNumber(Globals::ScreenWidth - (2 * 32) - 32) + 32 + 16;
+			// 	enemy->y = getRandomNumber(Globals::ScreenHeight - (2 * 32) - 32) + 32 + 16;
+			// 	// enemy->invincibleTimer = 0.1;
+
+			// 	enemies.push_back(enemy);
+			// 	Entity::entities.push_back(enemy);
+
+			// }
 		}
 
 		//update camera positions
 		camController.update();
 
 		//draw all entities
-		draw();
+		draw(spriteSheet);
 	}
 
 }
-void Game::draw(){
+void Game::draw(SDL_Texture* texture){
 	//clear the screen
-	SDL_SetRenderDrawColor(Globals::renderer, 145, 133, 129, SDL_ALPHA_OPAQUE);
+	SDL_SetRenderDrawColor(Globals::renderer, 145, 133, 129, SDL_ALPHA_TRANSPARENT);
 	SDL_RenderClear(Globals::renderer);
+
+   
+    char tileID = 0;
+    
+    int tileWidth = loader->getMap("testmap")->getTileWidth();
+    int tileHeight = loader->getMap("testmap")->getTileHeight();
+    for (int i = 0; i < loader->getMap("testmap")->getHeight(); ++i)
+    {
+        for (int j = 0; j < loader->getMap("testmap")->getWidth(); ++j)
+        {
+            // get the tile at current position
+            tileID = loader->getMap("testmap")->getTileLayer("Tile Layer 1")->getTileVector()[i][j];
+            
+            // only render if it is an actual tile (tileID = 0 means no tile / don't render anything here)
+            if (tileID > 0)
+            {
+                SDL_Rect srcrect = { ((tileID - 1) % 4) * tileWidth, ((tileID - 1) / 4) * tileHeight, tileWidth, tileHeight };
+                SDL_Rect dstrect = { (j * 32)-Globals::camera.x , (i * 32)-Globals::camera.y, 32, 32 };
+                SDL_RenderCopy(Globals::renderer, texture, &srcrect, &dstrect);
+            }
+        }
+    }
+
 
 	if (splashShowing){
 		renderTexture(splashImage, Globals::renderer, 0, 0);
 	}
 	else{
 		//draw the background
-		renderTexture(backgroundImage, Globals::renderer, 0-Globals::camera.x, 0-Globals::camera.y);
+		// renderTexture(backgroundImage, Globals::renderer, 0-Globals::camera.x, 0-Globals::camera.y);
 
 		//sort all entities based on y(depth)
 		Entity::entities.sort(Entity::EntityCompare);

@@ -57,21 +57,7 @@ int main(int argc, char **agv){
 		cout << "mixer did not initalise" << endl;
 		return 1;
 	}
-
-	//load up a texture to draw
-	/*string resPath = getResourcePath();
-	SDL_Texture* texture = loadTexture(resPath + "map.png", Globals::renderer);
-
-	//run game for 5000 ticks (5000ms)
-	while (SDL_GetTicks() < 5000){
-		//clear the screen
-		SDL_RenderClear(Globals::renderer);
-		//draw what we want to the screen
-		renderTexture(texture, Globals::renderer, 0, 0);
-		//show image we've been rendering
-		SDL_RenderPresent(Globals::renderer);
-	}
-	*/
+	
 	Game game;
 	game.update();
 

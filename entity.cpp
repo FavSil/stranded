@@ -1,6 +1,9 @@
 #include "entity.h"
 
-const int Entity::DIR_UP = 0, Entity::DIR_DOWN = 1, Entity::DIR_LEFT = 2, Entity::DIR_RIGHT= 3, Entity::DIR_NONE = -1;
+
+const int Entity::DIR_UP = 0, Entity::DIR_DOWN = 1, Entity::DIR_LEFT = 2, Entity::DIR_RIGHT= 3, Entity::DIR_DOWN_RIGHT = 4, Entity::DIR_DOWN_LEFT = 5, Entity::DIR_UP_RIGHT = 6, Entity::DIR_UP_LEFT = 7, Entity::DIR_NONE = -1;
+
+
 Entity::~Entity(){};
 void Entity::update() { ; }//override me to do something useful
 void Entity::draw() {
@@ -10,6 +13,7 @@ void Entity::draw() {
 		currentFrame->Draw(animSet->spriteSheet, x - Globals::camera.x, y - Globals::camera.y);
 	}
 	//draw collsionBox
+
 	if (solid && Globals::debugging){
 		//sets the current drawing colour (Doesn't affect textures and what not)
 		SDL_SetRenderDrawColor(Globals::renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
@@ -27,6 +31,12 @@ void Entity::move(float angle){
 	moving = true;
 	moveSpeed = moveSpeedMax;
 	this->angle = angle;
+
+	//xmove = distance * cos(angle in radians)
+	float velocity_x = moveSpeed*(cos(angle*Globals::PI / 180));
+	//ymove = distance * sin(angle in radians)
+	float velocity_y = moveSpeed*(sin(angle*Globals::PI / 180));
+
 
 	int newDirection = angleToDirection(angle);
 	//if direction changed, update current animation

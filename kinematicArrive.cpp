@@ -46,7 +46,7 @@ KinematicSteeringOutput KinematicArrive::getSteering(){
     
 
     //TODO: setup orientation on enamies
-    std::cout<<result.velocity[0]<< " "<< result.velocity[1] << endl;
+    // std::cout<<result.velocity[0]<< " "<< result.velocity[1] << endl;
 
     result.rotation = 0;
 

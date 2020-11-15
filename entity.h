@@ -12,7 +12,7 @@ class Entity{
 public:
 
 	//reference constants
-	static const int DIR_UP, DIR_DOWN, DIR_LEFT, DIR_RIGHT, DIR_NONE;
+	static const int DIR_UP, DIR_DOWN, DIR_LEFT, DIR_RIGHT, DIR_DOWN_LEFT, DIR_DOWN_RIGHT,DIR_UP_RIGHT,DIR_UP_LEFT, DIR_NONE;
 
 	//quick label to see what the entity is up to
 	int state;
@@ -32,6 +32,9 @@ public:
 	float slideAmount; //amount of push in the slideAngle
 	float moveLerp = 4;
 	float totalXMove, totalYMove; //keeps track of total x,y movement per movement turn. just incase we need to retract movement
+	// std::vector<float> velocity;
+	float velocity_x = 0;
+	float velocity_y = 0;
 
 	SDL_Rect collisionBox; //box describing the size of our entity and this is used to bump into things
 	SDL_Rect lastCollisionBox; 
